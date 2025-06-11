@@ -6,6 +6,7 @@ mod db;
 mod errors;
 mod handlers;
 mod models;
+mod mqtt;
 mod seed;
 mod utils;
 
@@ -32,6 +33,10 @@ async fn main() -> std::io::Result<()> {
         if let Err(e) = seed::seed_database(&db_conn).await {
             eprintln!("Error running seeder: {}", e);
         }
+    }
+
+    if let Err(e) = mqtt::start_mqtt_client().await {
+        println!("Failed to start MQTT client: {:?}", e);
     }
 
     HttpServer::new(|| {
