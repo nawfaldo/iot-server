@@ -9,8 +9,10 @@ pub async fn start_mqtt_client() -> Result<(), Box<dyn std::error::Error>> {
         .expect("MQTT_PORT must be set in .env")
         .parse()
         .expect("MQTT_PORT must be a valid u16 integer");
+        
+        let client = std::env::var("MQTT_CLIENT").unwrap();
 
-    let mut mqttoptions = MqttOptions::new("server", host, port);
+    let mut mqttoptions = MqttOptions::new(client, host, port);
     mqttoptions.set_keep_alive(Duration::from_secs(5));
 
     let username = std::env::var("MQTT_USERNAME").unwrap();
