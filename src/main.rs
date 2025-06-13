@@ -50,6 +50,9 @@ async fn main() -> std::io::Result<()> {
             .route("/hi", web::get().to(|| async { "hi!" }))
             .service(handlers::user::login)
             .service(handlers::cluster::get_clusters)
+            .service(handlers::cluster::create_cluster)
+            .service(handlers::cluster::edit_cluster)
+            .service(handlers::cluster::delete_cluster)
     })
     .bind(format!("{}:{}", host, port))?
     .run()

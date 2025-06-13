@@ -36,4 +36,4 @@ pub struct LoginUser {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserData {
     pub username: String,
-} 
+}

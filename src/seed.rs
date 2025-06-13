@@ -21,12 +21,14 @@ pub async fn seed_database(db: &DatabaseConnection) -> Result<(), DbErr> {
     let first_user_first_cluster = ClusterActiveModel {
         name: Set("I Cant Stop The Loneliness".to_owned()),
         user_id: Set(user_id),
+        chip_serial: Set(1),
         ..Default::default()
     };
     Cluster::insert(first_user_first_cluster).exec(db).await?;
     let first_user_second_cluster = ClusterActiveModel {
         name: Set("A Hope From Sad Street".to_owned()),
         user_id: Set(user_id),
+        chip_serial: Set(2),
         ..Default::default()
     };
     Cluster::insert(first_user_second_cluster).exec(db).await?;
